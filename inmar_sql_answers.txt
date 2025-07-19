@@ -1,0 +1,24 @@
+The main task is the result of the uncommented query in inmar.sql file.
+The other 3 queries for the question are commented and they give the answer for one of them.
+The table used is 'reporting.tblRedemptions-ByDay_fix', which is the original table but with 
+2 additional records that have a 0 value on the redemptionCount field.
+
+Here are the answers to the additional questions:
+
+1. Which date had the least number of redemptions and what was the redemption count?
+    2023-11-02 with 0 redemptions (createDateTime: 2023-11-06)
+
+2. Which date had the most number of redemptions and what was the redemption count?
+    2023-11-04 with 5224 redemptions (createDateTime 2023-11-05)
+
+3. What was the createDateTime for each redemptionCount in questions 1 and 2?
+    1. 2023-11-06
+    2. 2023-11-05
+
+4. Is there another method you can use to pull back the most recent redemption count, by
+redemption date, for the date range 2023-10-30 to 2023-11-05, for retailer "ABC Store"?
+In words, describe how you would do this (no need to write a query, unless you’d like to)
+    Yes. Instead of creating a temporal table using window functions, a less straight forward way would be creating a one that pulls 
+    the max(createDateTime) for each redemptionDate, then joining that back to the original table to get the redemptionCount's using
+    the dates as the key. This would avoid the need for window functions and would still give the most recent redemption count per date,
+    but with a longer and more confusing query (might be less efficient as well).
